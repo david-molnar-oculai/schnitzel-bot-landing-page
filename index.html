@@ -77,14 +77,14 @@
                 <div class="container">
                     <div class="hero-inner">
 						<div class="hero-copy">
-	                        <h1 class="hero-title mt-0">Landing template for startups</h1>
-	                        <p class="hero-paragraph">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
+	                        <h1 class="hero-title mt-0">Schnitzel Bot</h1>
+	                        <p class="hero-paragraph">Never miss Schnitzel in Werksviertel again</p>
 							<div class="hero-form field field-grouped">
 								<div class="control control-expanded">
-									<input class="input" type="email" name="email" placeholder="Your best email&hellip;">
+									<input id="channelInput" class="input" type="text" name="channel" placeholder="Channel name (must be public)">
 								</div>
 								<div class="control">
-									<a class="button button-primary button-block" href="#">Early access</a>
+									<a id="installButton" class="button button-primary button-block" href="#">Install</a>
 								</div>
 							</div>
 						</div>
@@ -296,8 +296,8 @@
                     <div class="features-inner section-inner">
                         <div class="features-header text-center">
                             <div class="container-sm">
-                                <h2 class="section-title mt-0">Meet April</h2>
-                                <p class="section-paragraph">Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
+                                <h2 class="section-title mt-0">Meet Schnitzel Bot</h2>
+                                <p class="section-paragraph">Schnitzel Bot will notify you about Schnitzel via Slack</p>
                             </div>
                         </div>
 						<div class="features-wrap">
@@ -459,15 +459,15 @@
                 <div class="container-sm">
                     <div class="newsletter-inner section-inner">
                         <div class="newsletter-header text-center">
-                            <h2 class="section-title mt-0">Stay in the know</h2>
-                            <p class="section-paragraph">Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
+                            <h2 class="section-title mt-0">Don't miss out, install now!</h2>
+                            <p class="section-paragraph">Schnitzel Bot is completely free to use and can be uninstalled any time.</p>
                         </div>
                         <div class="footer-form newsletter-form field field-grouped">
                             <div class="control control-expanded">
-                                <input class="input" type="email" name="email" placeholder="Your best email&hellip;">
+                                <input id="channelInput2" class="input" type="email" name="email" placeholder="Channel name (must be public)">
                             </div>
-                            <div class="control">
-                                <a class="button button-primary button-block button-shadow" href="#">Early access</a>
+                            <div id="installButton2" class="control">
+                                <a class="button button-primary button-block button-shadow" href="#">Install</a>
                             </div>
                         </div>
                     </div>
@@ -509,19 +509,16 @@
                     </div>
                     <ul class="footer-links list-reset">
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="mailto:david.molnar@oculai.de">Contact</a>
                         </li>
                         <li>
-                            <a href="#">About us</a>
+                            <a href="https://oculai.de">About us</a>
                         </li>
                         <li>
-                            <a href="#">FAQ's</a>
-                        </li>
-                        <li>
-                            <a href="#">Support</a>
+                            <a href="mailto:david.molnar@oculai.de">Support</a>
                         </li>
                     </ul>
-                    <ul class="footer-social-links list-reset">
+                    <ul class="footer-social-links list-reset" style="visibility: collapse">
                         <li>
                             <a href="#">
                                 <span class="screen-reader-text">Facebook</span>
@@ -547,12 +544,37 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="footer-copyright">&copy; 2018 April, all rights reserved</div>
+                    <div class="footer-copyright">&copy; 2023 Schnitzel Bot, all rights reserved</div>
                 </div>
             </div>
         </footer>
     </div>
 
     <script src="dist/js/main.min.js"></script>
+	<script type="text/javascript">
+		(() => {
+			const installButton = document.getElementById("installButton");
+			const channelInput = document.getElementById("channelInput");
+
+			installButton.addEventListener("click", () => {
+				if (!channelInput.value) {
+					return;
+				}
+
+				window.location = `https://slack.com/oauth/v2/authorize?client_id=2512245776369.6190969170343&scope=channels:read,chat:write,channels:join&user_scope=&state=${encodeURIComponent(channelInput.value)}`
+			});
+
+			const installButton2 = document.getElementById("installButton2");
+			const channelInput2 = document.getElementById("channelInput2");
+
+			installButton2.addEventListener("click", () => {
+				if (!channelInput2.value) {
+					return;
+				}
+
+				window.location = `https://slack.com/oauth/v2/authorize?client_id=2512245776369.6190969170343&scope=channels:read,chat:write,channels:join&user_scope=&state=${encodeURIComponent(channelInput2.value)}`
+			});
+		})()
+	</script>
 </body>
 </html>
