@@ -19,14 +19,28 @@
 		.subHeader {
 			font-size: 18px;
 		}
+        a {
+            font-size: 16px;
+        }
 	</style>
 </head>
 <body>
     <div class="container">
 		<div>
-        	✅ Schnitzel Box successfully installed ✅
+            ⚠️ Schnitzel Bot installation failed ⚠️
 		</div>
-		<div class="subHeader">Thank you</div>
+		<div class="subHeader">Unknown error</div>
+        <a href="https://schnitzel.oculai.de">Try again</a>
     </div>
+    <script>
+      (() => {
+        const search = new URLSearchParams(window.location.search);
+        const errorMessage = search.get("error");
+        if (errorMessage) {
+            const subHeader = document.querySelector(".subHeader");
+            subHeader.innerHTML = errorMessage;
+        }
+      })()
+    </script>
 </body>
 </html>
